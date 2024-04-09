@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://thymeleaforg">
+<head>
+    <meta charset="UTF-8">
+    <title>Результат</title>
+</head>
+<body>
+<h1>Найденный пользователь:</h1>
+<br>
+<div th:if="${user}">
+    <p th:text="${user.toString()}" style="font-size: 150%;"></p>
+</div>
+<br><br>
+<h2>Форма для изменения данных пользователя:</h2>
+<form th:object="${user}" method="get" action="/update" accept-charset="UTF-8">
+    <input type="hidden" id="id" th:field="*{id}">
+    <label for="name">Имя:</label>
+    <input type="text" id="name" th:field="*{firstName}" required/><br>
+    <label for="surname">Фамилия:</label>
+    <input type="text" id="surname" th:field="*{lastName}" required/><br>
+    <label for="age">Возраст:</label>
+    <input type="text" id="age" th:field="*{age}" required/><br>
+    <button type="submit">Изменить</button>
+</form>
+
+<br><br>
+<a href="users" style="display: block; font-size: 21px;">Перейти к списку пользователей</a>
+</body>
+</html>
