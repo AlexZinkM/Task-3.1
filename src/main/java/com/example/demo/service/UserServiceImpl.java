@@ -1,35 +1,38 @@
 package com.example.demo.service;
 
 
-import com.example.demo.DAO.UserDAO;
 import com.example.demo.DAO.UserDAOImpl;
 import com.example.demo.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl {
 
+    private final UserDAOImpl userRepository;
     @Autowired
-    UserDAO ud = new UserDAOImpl();
-    public List<User> getAll() {
-        return ud.getAll();
+    public UserServiceImpl(UserDAOImpl userRepository) {
+        this.userRepository = userRepository;
     }
 
-    public User get(long id) {
-        return ud.get(id);
+    public User findById(Long id){
+        Optional<User> optionalDav = userRepository.findById(id);
+        return optionalDav.orElse(null);
     }
 
-    public void create(User user) {
-        ud.create(user);
+
+    public List<User> findAll(){
+        return userRepository.findAll();
     }
 
-    public void update(User user) {
-        ud.update(user);
+    public User saveUser(User user){
+        return userRepository.save(user);
     }
-    public User delete(long id) {
-        return ud.delete(id);
+
+    public void deleteById(Long id){
+        userRepository.deleteById(id);
     }
 }
