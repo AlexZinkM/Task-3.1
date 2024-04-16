@@ -35,16 +35,6 @@ public class UserController {
     }
 
 
-//    @GetMapping("/get")
-//    public String get(@RequestParam(value = "id") Long id, Model model) {
-//        User user = userService.findById(id);
-//        if (user == null) {
-//            return "errorPage";
-//        }
-//            model.addAttribute("user", user);
-//            return "get";
-//    }
-
     @GetMapping("/get")
     public String get(@RequestParam(value = "id") Long id, Model model) {
         User user = userService.findById(id);
@@ -74,8 +64,9 @@ public class UserController {
         }
         userService.deleteById(id);
         return "deleteCompleted";
+        //Метод delete возвращает void
     }
-    @GetMapping("/update")
+    @PostMapping("/update")
     public String update(@ModelAttribute("user") User user) {
         userService.saveUser(user);
         return "changeCompleted";

@@ -12,7 +12,7 @@
 </div>
 <br><br>
 <h2>Форма для изменения данных пользователя:</h2>
-<form th:object="${user}" method="get" action="/update" accept-charset="UTF-8">
+<form th:object="${user}" method="post" action="/update" accept-charset="UTF-8">
     <input type="hidden" id="id" th:field="*{id}">
     <label for="name">Имя:</label>
     <input type="text" id="name" th:field="*{firstName}" required/><br>
